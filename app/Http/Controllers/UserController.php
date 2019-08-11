@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
@@ -15,10 +16,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->get();
-        $success['data'] =  $users;
-        $success['status'] = $this->successStatus;
-        return response()->json(['success'=>$success], $this->successStatus); 
+        // $users = User::with('roles')->get();
+        // $success['data'] =  $users;
+        // $success['status'] = $this->successStatus;
+        // return response()->json(['success'=>$success], $this->successStatus); 
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -27,10 +29,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        return response()->json(['data'=>$user], $this->successStatus); 
+        // return $user;
+        return new UserResource(User::where('id', $user->id)->first());
+        // return response()->json(['data'=>$user], $this->successStatus); 
     }
 
     /**
@@ -40,9 +43,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'roles' => 'required',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        $user->roles = $user->roles()->sync($request->roles);
+        $success['success'] = "User info updated";
+        $success['data'] = new UserResource(User::where('id', $user->id)->first());
+        return response()->json([
+            'success'=>$success
+        ], $this->successStatus); 
     }
 
     /**
