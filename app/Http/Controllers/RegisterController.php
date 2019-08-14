@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RoleResource;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,5 +27,9 @@ class RegisterController extends Controller
                 $success['token'] =  $user->createToken('MyApp')-> accessToken; 
                 $success['data'] =  $user;
         return response()->json(['success'=>$success], $this->successStatus); 
+    }
+
+    public function getRole(){
+        return RoleResource::collection(Role::all());
     }
 }
