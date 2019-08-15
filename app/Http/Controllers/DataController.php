@@ -46,12 +46,14 @@ class DataController extends Controller
 
                     $user = User::where('email', $tmp_email[1])->first();
                     if($user){
+                        // existing user
                         $user_id = $user->id;
-                        // $data['data'] = $user_id;
+                        // get the roles of users
                         $role_id = $this->getRoles($tmp_roles[1]);
+                        // save the roles to role_user table
                         $user->roles()->sync($role_id);
-                        // $data[$i]['role'] = $role_id;
                     }else{
+                        // new user 
                         $new_user = new User();
                         $new_user->name = $tmp_name[1];
                         $new_user->email = $tmp_email[1];
@@ -150,6 +152,6 @@ class DataController extends Controller
     }
 
     public function export(){
-        return Excel::download(new UsersExport, 'users.xlsx');
+        // return Excel::download(new UsersExport, 'users.xlsx');
     }
 }
