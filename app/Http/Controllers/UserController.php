@@ -47,7 +47,7 @@ class UserController extends Controller
         $user->save();
 
         $user->roles()->attach($req->roles);
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+        // $success['token'] =  $user->createToken('MyApp')-> accessToken; 
         $success['data'] = new UserResource(User::where('id', $user->id)->first());
         return response()->json(['success'=>$success], $this->successStatus); 
     }
