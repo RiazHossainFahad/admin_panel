@@ -23,5 +23,9 @@ Route::get('role', 'RegisterController@getRole');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::ApiResource('user', 'UserController');
+
+    Route::get('export', 'DataController@export');
+    Route::post('import', 'DataController@import');
+
     Route::get('logout', 'LoginController@logoutApi');
 });
