@@ -1,12 +1,13 @@
 ## Admin Panel
 This is a proejct which supplies API's for an admin dashboard. The Features are:
 
--Register
--Login
--Show All Users
--Single User Details
--Edit/Delete User
--Import from excel file(__Can read from CSV only__)
+### Features
+- Register
+- Login
+- Show All Users
+- Single User Details
+- Edit/Delete User
+- Import from excel file(__Can read from CSV only__)
 
 ---
 
