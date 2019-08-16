@@ -1,16 +1,32 @@
-<p align="center">## ADMIN PANEL</p>
+## Admin Panel
+This is a proejct which supplies API's for an admin dashboard. The Features are:
 
-## About Admin Panel
+-Register
+-Login
+-Show All Users
+-Single User Details
+-Edit/Delete User
+-Import from excel file(__Can read from CSV only__)
 
+---
+
+### How to use
+
+- Clone the repository with __git clone__
+- Copy __.env.example__ file to __.env__ and edit database credentials there
+- Run __composer install__
+- Run __php artisan key:generate__
+- Run __php artisan migrate__
+- That's it - load the homepage
+
+---
+
+### License
+
+Please use and re-use however you want.
+
+---
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Welcome to any contributor. Thank You :) 
