@@ -17,8 +17,10 @@ This is a proejct which supplies API's for an admin dashboard. The Features are:
 - Copy __.env.example__ file to __.env__ and edit database credentials there
 - Run __composer install__
 - Run __php artisan key:generate__
-- Run __php artisan migrate__
-- That's it - load the homepage
+- Import Database file from __Backup folder__
+- Run __php artisan passport:install_
+- Run __php artisan serve__
+- That's it
 
 ---
 
